@@ -12,7 +12,8 @@
         "gulp-uglify": "*",
         "gulp-jade": "*",
         "gulp-imagemin": "*",
-        "gulp-jshint": "*"
+        "gulp-jshint": "*",
+        "browser-sync": "*"
     },
     "author": "daiyanan",
     "repository": { 

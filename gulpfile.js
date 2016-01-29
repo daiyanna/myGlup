@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var rename = require('gulp-rename');
 var clean = require('gulp-clean');
+var browserSync = require('browser-sync');
 
 var less = require('gulp-less');
 var minifycss = require('gulp-minify-css');
@@ -14,8 +15,8 @@ var gulpUrl = {
 	srcPath: {
 		less: './src/less/**/*.less',
 		js: './src/js/**/*.js',
-		jade: './src/js/**/*.jade',
-		images: './src/js/**/*.images'
+		jade: './src/jade/**/*.jade',
+		img: './src/images/**/*.{png,jpg,gif,ico}'
 	},
 	destPath: './dist'
 }
@@ -38,28 +39,33 @@ gulp.task('compress', function() {
 // jade
 gulp.task('jade', function() {
   gulp.src( gulpUrl.srcPath.jade )
-    .pipe( jade({locals: YOUR_LOCALS, pretty: true }) )
+    .pipe( jade({pretty: true}) )
     .pipe( gulp.dest(gulpUrl.destPath+'/web') )
 });
 //图片
 gulp.task('images', function() {
-	gulp.src( gulpUrl.srcPath.images )
-		.pipe( imagemin({ optimizationLevel:3, progressive: true, interlaced: true }) )
+	gulp.src( gulpUrl.srcPath.img )
+		// .pipe( imagemin() ) 
 		.pipe( gulp.dest(gulpUrl.destPath+'/images') )
 });
-
-gulp.task('clean', function(){
-	gulp.src( gulpUrl.destPath )
-		.pipe( clean() );
-})
-
+// gulp.task('clean', function(){
+// 	gulp.src( gulpUrl.destPath )
+// 		.pipe( clean() );
+// })
+//自动刷新页面
+gulp.task('browser', function () {
+	browserSync.init([gulpUrl.destPath+'/css', gulpUrl.destPath+'/js', gulpUrl.destPath+'/web', gulpUrl.destPath+'/images'], {	//改动了这些文件需要自动刷新
+		server: {baseDir: gulpUrl.destPath }	//默认localhost:3000指向的目录  url访问：http://localhost:3000/web/index.html
+	});
+});
 gulp.task('watch', function(){
 	gulp.watch(gulpUrl.srcPath.less, ['styles']);
 	gulp.watch(gulpUrl.srcPath.js, ['compress']);
 	gulp.watch(gulpUrl.srcPath.jade, ['jade']);
-	gulp.watch(gulpUrl.srcPath.images, ['images']);
+	gulp.watch(gulpUrl.srcPath.img, ['images']);
+})
+gulp.task('init', function(){
+	gulp.start('styles', 'compress', 'jade', 'images')
 })
 
-gulp.task('default', ['clean', 'watch'])
-
-// browserSync = require('browser-sync')
+gulp.task('default', ['watch', 'browser']);
