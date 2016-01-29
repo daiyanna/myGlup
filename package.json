@@ -1,0 +1,23 @@
+{
+    "name": "dyn",
+    "version": "0.0.0",
+    "description": "daiyanna",
+    "main": "gulpfile.js",
+    "dependencies": {
+        "gulp": "*",
+        "gulp-rename" : "*",
+        "gulp-clean": "*",
+        "gulp-less": "*",
+        "gulp-minify-css": "*",
+        "gulp-uglify": "*",
+        "gulp-jade": "*",
+        "gulp-imagemin": "*",
+        "gulp-jshint": "*"
+    },
+    "author": "daiyanan",
+    "repository": { 
+        "type" : "git",
+        "url" : "http://github.com/npm/npm.git"
+    },
+    "license": "BSD-3-Clause"
+}
