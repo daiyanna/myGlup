@@ -8,7 +8,7 @@ var minifycss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');       // js压缩
 var jade = require('gulp-jade');
 var imagemin = require('gulp-imagemin');
-var jshint = require('gulp-jshint');
+var jshint = require('gulp-jshint');//检查js
 
 
 var gulpUrl = {
