@@ -4,10 +4,10 @@ var clean = require('gulp-clean');
 var browserSync = require('browser-sync');
 
 var less = require('gulp-less');
-var minifycss = require('gulp-minify-css');
+var minifycss = require('gulp-minify-css');//压缩css
 var uglify = require('gulp-uglify');       // js压缩
 var jade = require('gulp-jade');
-var imagemin = require('gulp-imagemin');
+var imagemin = require('gulp-imagemin');//压缩图片
 var jshint = require('gulp-jshint');//检查js
 
 
